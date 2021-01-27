@@ -35,15 +35,15 @@
      inkscape:cx="321.72503"
      inkscape:cy="177.10733"
      inkscape:document-units="px"
-     inkscape:current-layer="layer1"
+     inkscape:current-layer="g849"
      inkscape:document-rotation="0"
      showgrid="false"
      units="px"
      inkscape:snap-page="true"
      inkscape:window-width="1920"
-     inkscape:window-height="1043"
-     inkscape:window-x="1920"
-     inkscape:window-y="0"
+     inkscape:window-height="1016"
+     inkscape:window-x="0"
+     inkscape:window-y="27"
      inkscape:window-maximized="1"
      inkscape:snap-bbox="true"
      inkscape:bbox-nodes="true" />
@@ -63,25 +63,28 @@
      inkscape:label="Ebene 1"
      inkscape:groupmode="layer"
      id="layer1">
+    <g
+       id="g849">
       <g
-         id="g861">
+         id="g841">
+        <g
+           id="g861">
+          <rect
+             style="fill:#ff0000;stroke-width:0;stroke-linecap:round;stroke-linejoin:round"
+             id="rect830"
+             width="132.29167"
+             height="79.375"
+             x="0"
+             y="0" />
+        </g>
         <rect
-           style="fill:#ff0000;stroke-width:0;stroke-linecap:round;stroke-linejoin:round"
-           id="rect830"
-           width="132.29167"
-           height="79.375"
-           x="0"
-           y="0" />
+           style="fill:#000080;stroke:none;stroke-width:2.50984"
+           id="rect844"
+           width="68.260147"
+           height="45.73214"
+           x="36.600159"
+           y="15.280039" />
       </g>
-      <rect
-         style="fill:#000080;stroke:none;stroke-width:2.50984"
-         id="rect844"
-         width="68.260147"
-         height="45.73214"
-         x="0"
-         y="0" />
-   </g>
-   <g
-   />
-   </g>
+    </g>
+  </g>
 </svg>

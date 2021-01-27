@@ -1,5 +1,5 @@
 import re
-import numpy
+from termcolor import colored
 
 
 def get_index(input_string, sub_string, ordinal):
@@ -9,7 +9,7 @@ def get_index(input_string, sub_string, ordinal):
     return current
 
 
-fileName = "./file.svg"
+fileName = "./file2.svg"
 
 # Opening file and adding lines to array
 with open(fileName) as f:
@@ -65,8 +65,25 @@ for groupe in range(len(groupList)):
             (get_group(groupOpener), get_start(groupOpener, groupe), get_end(openTags)))
         openTags += 1
 
-
-# print(contentStrip.index(groupList[3])+1) # first matched value
-# print(contentStrip.index(groupList[3], contentStrip.index(groupList[3]) + 1)+1) # second mateched value
 print(groupLinesList)
-# print(content[content.index(newList[2])])
+
+mainGroup = ""
+
+for groupes in groupLinesList:
+    line = 0
+    line = groupes[1]
+    x = False
+    y = False
+    while line != groupes[2]:
+        line += 1
+        if(contentStrip[line] == 'x=\"0\"'):
+            x = True
+        if(contentStrip[line] == 'x=\"0\"'):
+            y = True
+        if(x == True and y == True):
+            #print(colored(colored(groupes[0]+" is the main group", 'green')))
+            mainGroup = ""
+            mainGroup = groupes[0]
+            break
+
+print(mainGroup)
