@@ -1,5 +1,6 @@
 import re
 from termcolor import colored
+import numbers
 
 
 def get_index(input_string, sub_string, ordinal):
@@ -9,7 +10,7 @@ def get_index(input_string, sub_string, ordinal):
     return current
 
 
-fileName = "./file2.svg"
+fileName = "./file.svg"
 
 # Opening file and adding lines to array
 with open(fileName) as f:
@@ -81,9 +82,45 @@ for groupes in groupLinesList:
         if(contentStrip[line] == 'x=\"0\"'):
             y = True
         if(x == True and y == True):
-            #print(colored(colored(groupes[0]+" is the main group", 'green')))
+            # print(colored(colored(groupes[0]+" is the main group", 'green')))
             mainGroup = ""
             mainGroup = groupes[0]
             break
 
-print(mainGroup)
+
+# Get groupe from sublist
+mainGroup = next(
+    (sublist for sublist in groupLinesList if mainGroup in sublist))
+mainGroupStart = mainGroup[1]-1  # add groupe start tag (e.g <g)
+mainGroupEnd = mainGroup[2]
+
+mainGroupList = []
+
+while mainGroupStart < mainGroupEnd:
+    mainGroupList.append(contentStrip[mainGroupStart])
+    mainGroupStart += 1
+
+print(mainGroupList)
+xRE = re.compile('(x=)')
+xList = list(filter(xRE.match, mainGroupList))
+print(xList)
+
+yRE = re.compile('(y=)')
+yList = list(filter(yRE.match, mainGroupList))
+print(yList)
+
+digitList = []
+
+for element in xList:
+    digits = []
+    for character in element:
+        try:
+            if(character == "."):
+                digits.append(".")
+                pass
+            if(type(int(character)) == int):
+                digits.append(int(character))
+        except:
+            pass
+    digitList.append(digits)
+print(digitList)

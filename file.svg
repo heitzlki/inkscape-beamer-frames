@@ -67,23 +67,23 @@
        id="g849">
       <g
          id="g841">
-        <g
-           id="g861">
-          <rect
-             style="fill:#ff0000;stroke-width:0;stroke-linecap:round;stroke-linejoin:round"
-             id="rect830"
-             width="132.29167"
-             height="79.375"
-             x="0"
-             y="0" />
-        </g>
-        <rect
-           style="fill:#000080;stroke:none;stroke-width:2.50984"
-           id="rect844"
-           width="68.260147"
-           height="45.73214"
-           x="36.600159"
-           y="15.280039" />
+         <g
+            id="g861">
+            <rect
+               style="fill:#ff0000;stroke-width:0;stroke-linecap:round;stroke-linejoin:round"
+               id="rect830"
+               width="132.29167"
+               height="79.375"
+               x="0"
+               y="0" />
+            <rect
+               style="fill:#000080;stroke:none;stroke-width:2.50984"
+               id="rect844"
+               width="68.260147"
+               height="45.73214"
+               x="36.600159"
+               y="15.280039" />
+         </g>
       </g>
     </g>
   </g>
