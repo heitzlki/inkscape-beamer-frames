@@ -77,17 +77,18 @@ for groupes in groupLinesList:
     y = False
     while line != groupes[2]:
         line += 1
-        if(contentStrip[line] == 'x=\"0\"'):
+        if(re.match(r'x="0"', str(contentStrip[line])) != None or re.match(r'x="0.0"', str(contentStrip[line])) != None):
             x = True
-        if(contentStrip[line] == 'x=\"0\"'):
+        if(re.match(r'y="0"', str(contentStrip[line])) != None or re.match(r'y="0.0"', str(contentStrip[line])) != None):
             y = True
         if(x == True and y == True):
-            # print(colored(colored(groupes[0]+" is the main group", 'green')))
             mainGroup = ""
             mainGroup = groupes[0]
             break
 
-
+if(x != True or y != True):
+    exit("No main group found")
+print(colored(colored(mainGroup+" is the main group", 'green')))
 # Get groupe from sublist
 mainGroup = next(
     (sublist for sublist in groupLinesList if mainGroup in sublist))
@@ -110,7 +111,6 @@ yList = list(filter(yRE.match, mainGroupList))
 print(yList)
 
 digitList = []
-
 for element in xList:
     digits = []
     for character in element:
@@ -123,4 +123,42 @@ for element in xList:
         except:
             pass
     digitList.append(digits)
-print(digitList)
+
+digitXList = []
+for element in xList:
+    digits = []
+    for character in element:
+        try:
+            if(character == "."):
+                digits.append(".")
+                pass
+            if(type(int(character)) == int):
+                digits.append(int(character))
+        except:
+            pass
+    digitXList.append(digits)
+
+floatXList = []
+for digits in digitXList:  # [0], [3, 6, '.', 6, 0, 0, 1, 5, 9]
+    floatXList.append(float("".join(str(x) for x in digits)))
+print(floatXList)
+
+
+digitYList = []
+for element in yList:
+    digits = []
+    for character in element:
+        try:
+            if(character == "."):
+                digits.append(".")
+                pass
+            if(type(int(character)) == int):
+                digits.append(int(character))
+        except:
+            pass
+    digitYList.append(digits)
+
+floatYList = []
+for digits in digitYList:  # [0], [3, 6, '.', 6, 0, 0, 1, 5, 9]
+    floatYList.append(float("".join(str(x) for x in digits)))
+print(floatYList)
