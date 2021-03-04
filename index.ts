@@ -2,7 +2,7 @@ import * as fs from 'fs';
 import * as chalk from 'chalk';
 import * as glob from 'glob';
 import * as xml2json from 'xml2json';
-//import * as traverse from 'traverse';
+//import * as lodash from 'lodash';
 
 export class File {
   userInputFileName: string;
@@ -89,7 +89,8 @@ function traverse(o: any) {
           o.y >= 0 &&
           o.height <= fileHeight
         ) {
-          groupes.push([o.id, o.x, o.y]);
+          //groupes.push([o.id, o.x, o.y]);
+          groupes.push([o]);
         }
         traverse(o[key]);
       } else {
@@ -100,35 +101,20 @@ function traverse(o: any) {
     console.log(o);
   }*/
 }
-/*
-function findObject(o: any) {
-  var type = typeof o;
-  if (type == 'object') {
-    for (var key in o) {
-      if (key == 'x') {
-        //|| key == 'y') {
-
-        if (
-          o.x >= 0 &&
-          o.width <= fileWidth &&
-          o.y >= 0 &&
-          o.height <= fileHeight
-        ) {
-          groupes.push([o.id, o.x, o.y]);
-        }
-        traverse(o[key]);
-      } else {
-        traverse(o[key]);
-      }
-    }
-  } else {
-    console.log(o);
-  }
-}*/
 
 traverse(file);
-console.log(groupes);
 
 groupes.map((x) => {
   console.log(x[0]);
 });
+
+console.log(groupes[0][0]);
+
+console.log(JSON.stringify(file).search(JSON.stringify(groupes[0][0])));
+
+function endofstring(searchStr: any, findStr: any) {
+  return searchStr.lastIndexOf(findStr) > 0
+    ? searchStr.lastIndexOf(findStr) + findStr.length
+    : -1;
+}
+console.log(endofstring(JSON.stringify(file), JSON.stringify(groupes[0][0])));
