@@ -104,17 +104,87 @@ function traverse(o: any) {
 
 traverse(file);
 
-groupes.map((x) => {
-  console.log(x[0]);
-});
-
-console.log(groupes[0][0]);
-
-console.log(JSON.stringify(file).search(JSON.stringify(groupes[0][0])));
-
 function endofstring(searchStr: any, findStr: any) {
   return searchStr.lastIndexOf(findStr) > 0
     ? searchStr.lastIndexOf(findStr) + findStr.length
     : -1;
 }
-console.log(endofstring(JSON.stringify(file), JSON.stringify(groupes[0][0])));
+
+let objectInString: any[] = [];
+
+groupes.map((x) => {
+  objectInString.push([
+    x[0].id,
+    JSON.stringify(file).search(JSON.stringify(x[0])), // Start of object
+    endofstring(JSON.stringify(file), JSON.stringify(x[0])), // End of object
+  ]);
+});
+
+console.log(objectInString);
+
+function parseLines(string: String, start: number, end: number) {
+  let parsedString: String = '';
+
+  while (start < end) {
+    parsedString = parsedString + string[start];
+    start = start + 1;
+  }
+
+  return parsedString;
+}
+
+objectInString.map((x) => {
+  console.log(parseLines(JSON.stringify(file), x[1], x[2]));
+});
+
+function getKeyOfObject(string: String, start: number) {
+  let parsedString: String = '';
+
+  while (string[start] != ',') {
+    parsedString = parsedString + string[start];
+    start = start - 1;
+  }
+
+  return { parsedString, start };
+}
+
+objectInString.map((x) => {
+  console.log(getKeyOfObject(JSON.stringify(file), x[1]));
+});
+let i: number = 0;
+function getKKKeyByyyVal(iter: number, o: any) {
+  var type = typeof o;
+  if (type == 'object') {
+    for (var key in o) {
+      i = i + 1;
+      if (i == iter - 1) {
+        if (Object.prototype.toString.call(o) == '[object Array]') {
+          i = 0;
+          getKKKeyByyyVal(iter - 1, file);
+        } else {
+          console.log(o);
+        }
+      }
+      getKKKeyByyyVal(iter, o[key]);
+    }
+  }
+}
+
+let iteration = 0;
+let finIteration = 0;
+function getKeyByVal(o: any) {
+  var type = typeof o;
+  if (type == 'object') {
+    for (var key in o) {
+      iteration = iteration + 1;
+      if (o == groupes[0][0]) {
+        if (finIteration == 0) {
+          finIteration = iteration;
+          getKKKeyByyyVal(finIteration, file);
+        }
+      }
+      getKeyByVal(o[key]);
+    }
+  }
+}
+getKeyByVal(file);

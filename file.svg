@@ -31,9 +31,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.7"
-     inkscape:cx="277.88302"
-     inkscape:cy="314.6227"
+     inkscape:zoom="1.4"
+     inkscape:cx="220.25351"
+     inkscape:cy="169.25819"
      inkscape:document-units="px"
      inkscape:current-layer="g861"
      inkscape:document-rotation="0"
@@ -69,20 +69,55 @@
          id="g841">
         <g
            id="g861">
-          <rect
-             style="fill:#00ffff;stroke-width:0.284001"
-             id="rect869"
-             width="132.29167"
-             height="79.375"
-             x="0"
-             y="0" />
-          <rect
-             style="fill:#2b0000;stroke-width:0.200317"
-             id="rect871"
-             width="93.310432"
-             height="55.986259"
-             x="16.302462"
-             y="15.362097" />
+          <g
+             id="g842">
+            <rect
+               style="fill:#00ffff;stroke-width:0.284001"
+               id="rect869"
+               width="132.29167"
+               height="79.375"
+               x="0"
+               y="0" />
+            <rect
+               style="fill:#2b0000;stroke-width:0.200317"
+               id="rect871"
+               width="93.310432"
+               height="55.986259"
+               x="16.302462"
+               y="15.362097" />
+            <rect
+               style="fill:#00ff00;stroke-width:0.151328"
+               id="rect836"
+               width="74.264252"
+               height="40.145214"
+               x="5.2261028"
+               y="26.665445" />
+          </g>
+          <g
+             id="g850"
+             transform="matrix(0.60853814,0,0,0.60853814,38.841079,12.868543)">
+            <rect
+               style="fill:#00ffff;stroke-width:0.284001"
+               id="rect844"
+               width="132.29167"
+               height="79.375"
+               x="0"
+               y="0" />
+            <rect
+               style="fill:#2b0000;stroke-width:0.200317"
+               id="rect846"
+               width="93.310432"
+               height="55.986259"
+               x="16.302462"
+               y="15.362097" />
+            <rect
+               style="fill:#00ff00;stroke-width:0.151328"
+               id="rect848"
+               width="74.264252"
+               height="40.145214"
+               x="5.2261028"
+               y="26.665445" />
+          </g>
         </g>
       </g>
     </g>
