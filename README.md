@@ -1,6 +1,9 @@
 # inkscape-beamer-frames
 
-![inkscape-beamer-frames](https://raw.githubusercontent.com/heitzlki/inkscape-beamer-frames/main/img/inkscpe-beamer-frames.png)
+<p align="center">
+  <img src="https://raw.githubusercontent.com/heitzlki/inkscape-beamer-frames/main/img/inkscpe-beamer-frames.png" width="200" />
+</p>
+
 
 ## Table of contents
 
