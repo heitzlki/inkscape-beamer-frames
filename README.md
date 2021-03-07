@@ -1,5 +1,5 @@
 # inkscape-beamer-frames
-![inkscape-beamer-frames](https://github.com/heitzlki/inkscape-beamer-frames/blob/main/img/inkscape-beamer-frames.png)
+![inkscape-beamer-frames](https://raw.githubusercontent.com/heitzlki/inkscape-beamer-frames/main/img/inkscpe-beamer-frames.png)
 ## Table of contents
 * [General info](#general-info)
 * [Setup](#setup)
