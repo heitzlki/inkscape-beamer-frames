@@ -12,7 +12,7 @@
    viewBox="0 0 132.29166 79.375002"
    version="1.1"
    id="svg8"
-   inkscape:version="1.0.1 (3bc2e813f5, 2020-09-07)"
+   inkscape:version="1.0.2 (e86c870879, 2021-01-15)"
    sodipodi:docname="file.svg">
   <defs
      id="defs2">
@@ -31,9 +31,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0"
      inkscape:pageshadow="2"
-     inkscape:zoom="1.4"
-     inkscape:cx="220.25351"
-     inkscape:cy="169.25819"
+     inkscape:zoom="1.979899"
+     inkscape:cx="218.29637"
+     inkscape:cy="164.24523"
      inkscape:document-units="px"
      inkscape:current-layer="g861"
      inkscape:document-rotation="0"
@@ -65,61 +65,30 @@
      id="layer1">
     <g
        id="g849">
+      <rect
+         style="fill:#00ffff;fill-rule:evenodd;stroke-width:0.212283"
+         id="rect31"
+         width="35.062847"
+         height="51.096416"
+         x="7.029222"
+         y="10.782647" />
       <g
          id="g841">
-        <g
-           id="g861">
-          <g
-             id="g842">
-            <rect
-               style="fill:#00ffff;stroke-width:0.284001"
-               id="rect869"
-               width="132.29167"
-               height="79.375"
-               x="0"
-               y="0" />
-            <rect
-               style="fill:#2b0000;stroke-width:0.200317"
-               id="rect871"
-               width="93.310432"
-               height="55.986259"
-               x="16.302462"
-               y="15.362097" />
-            <rect
-               style="fill:#00ff00;stroke-width:0.151328"
-               id="rect836"
-               width="74.264252"
-               height="40.145214"
-               x="5.2261028"
-               y="26.665445" />
-          </g>
-          <g
-             id="g850"
-             transform="matrix(0.60853814,0,0,0.60853814,38.841079,12.868543)">
-            <rect
-               style="fill:#00ffff;stroke-width:0.284001"
-               id="rect844"
-               width="132.29167"
-               height="79.375"
-               x="0"
-               y="0" />
-            <rect
-               style="fill:#2b0000;stroke-width:0.200317"
-               id="rect846"
-               width="93.310432"
-               height="55.986259"
-               x="16.302462"
-               y="15.362097" />
-            <rect
-               style="fill:#00ff00;stroke-width:0.151328"
-               id="rect848"
-               width="74.264252"
-               height="40.145214"
-               x="5.2261028"
-               y="26.665445" />
-          </g>
+          <rect
+             style="fill:#0000ff;fill-rule:evenodd;stroke-width:0.264583"
+             id="rect19"
+             width="132.29167"
+             height="79.375"
+             x="0"
+             y="0" />
+          <rect
+             style="fill:#00ffff;fill-rule:evenodd;stroke-width:0.212283"
+             id="rect21"
+             width="35.062847"
+             height="51.096416"
+             x="7.029222"
+             y="10.782647" />
         </g>
-      </g>
     </g>
   </g>
 </svg>
