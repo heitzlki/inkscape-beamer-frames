@@ -95,8 +95,8 @@ class Objects {
       this.traverseMatchingObjectIteration(this.object, x[0]);
     });*/
 
-    console.log('Object:', JSON.stringify(this.objectsOnPage[0][0]));
-    this.traverseMatchingObjectIteration(this.object, this.objectsOnPage[0][0]);
+    //console.log('Object:', JSON.stringify(this.objectsOnPage[0][0]));
+    //this.traverseMatchingObjectIteration(this.object, this.objectsOnPage[0][0]);
 
     console.log('Object:', JSON.stringify(this.objectsOnPage[1][0]));
     this.traverseMatchingObjectIteration(this.object, this.objectsOnPage[1][0]);
