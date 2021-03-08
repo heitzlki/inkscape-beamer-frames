@@ -75,19 +75,19 @@
       <g
          id="g841">
           <rect
-             style="fill:#0000ff;fill-rule:evenodd;stroke-width:0.264583"
-             id="rect19"
-             width="132.29167"
-             height="79.375"
-             x="0"
-             y="0" />
-          <rect
              style="fill:#00ffff;fill-rule:evenodd;stroke-width:0.212283"
              id="rect21"
              width="35.062847"
              height="51.096416"
              x="7.029222"
              y="10.782647" />
+          <rect
+             style="fill:#0000ff;fill-rule:evenodd;stroke-width:0.264583"
+             id="rect19"
+             width="132.29167"
+             height="79.375"
+             x="0"
+             y="0" />
         </g>
     </g>
   </g>
