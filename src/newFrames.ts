@@ -1,5 +1,7 @@
 import File from './File';
 //import * as xml2json from 'xml2json';
+import * as traverse from 'traverse';
+import chalk = require('chalk');
 let fileParser = new File('file');
 let file: any = fileParser.getFile();
 
@@ -7,12 +9,10 @@ let fileWidth = Number((file.svg.width / 3.779527559055).toFixed(5));
 let fileHeight = Number((file.svg.height / 3.779527559055).toFixed(5));
 
 let objectsOnPage: any[] = [];
-let iterationWithObjectsOnPage: number = 0;
 function getObjectsOnPage(o: any) {
   var type = typeof o;
   if (type == 'object') {
     for (var key in o) {
-      iterationWithObjectsOnPage = iterationWithObjectsOnPage + 1;
       if (key == 'x') {
         //|| key == 'y') {
         if (
@@ -21,8 +21,7 @@ function getObjectsOnPage(o: any) {
           o.y >= 0 &&
           o.height <= fileHeight
         ) {
-          objectsOnPage.push([o, { iteratiob: iterationWithObjectsOnPage }]);
-          iterationWithObjectsOnPage = 0;
+          objectsOnPage.push([o]);
         }
         getObjectsOnPage(o[key]);
       } else {
@@ -32,77 +31,67 @@ function getObjectsOnPage(o: any) {
   }
 }
 
-let iTwo: number = 0;
-function traverseObjectIteration(o: any, objectIteration: number) {
-  var type = typeof o;
-  if (type == 'object') {
-    for (var key in o) {
-      iTwo = iTwo + 1;
-      if (iTwo == objectIteration) {
-        /*
-        if (Object.prototype.toString.call(o) == '[object Array]') {
-          iTwo = 0;
-          traverseObjectIteration(file, objectIteration - 1);
-        } else {
-          console.log(iTwo);
-          console.log(o);
-          iTwo = 0;
-        }*/
+getObjectsOnPage(file);
 
-        console.log(iTwo);
-        console.log(o);
-        iTwo = 0;
-
-        //this.objectsOnPageTwo.push([o, { iteration: this.iteration }]);
-      } else {
-        traverseObjectIteration(o[key], objectIteration);
-      }
+let iterationsOne: any[] = [];
+objectsOnPage.map((x) => {
+  let i: number = 0;
+  traverse(file).forEach((o) => {
+    i = i + 1;
+    if (o == x[0]) {
+      iterationsOne.push([i]);
     }
-  }
-}
+  });
+});
+console.log(iterationsOne);
 
+iterationsOne.map((x) => {
+  let i: number = 0;
+  traverse(file).forEach((o) => {
+    i = i + 1;
+    if (i == x[0]) {
+      console.log(chalk.blue('Found Object'), chalk.yellow(i), o);
+    }
+  });
+});
+///////////////////////////////////////////////////////////////////////////////////
+
+let iterationsTwo: any[] = [];
 let i = 0;
-let iterations: number[] = [];
-
-function getTraverseObjectIteration(o: any, matchingObject: any) {
-  var type = typeof o;
-  if (type == 'object') {
+function traverseTwo(o: any, x: any) {
+  if (typeof o == 'object') {
     for (var key in o) {
       i = i + 1;
-      console.log('Key: ', o[key]);
-      if (o == matchingObject) {
-        /*traverseMatchingObject(
-          matchingObjectIteration,
-          file
-        );*/
-
+      if (o == x) {
         if (i != 1) {
-          console.log('Matched', i);
-          if (iterations.indexOf(i) == -1) {
-            iterations.push(i);
-          }
+          iterationsTwo.push([i]);
         }
         i = 0;
-      } else {
-        getTraverseObjectIteration(o[key], matchingObject);
       }
+      traverseTwo(o[key], x);
+    }
+  }
+}
+objectsOnPage.map((x) => {
+  traverseTwo(file, x[0]);
+  i = 0;
+});
+
+console.log(iterationsTwo);
+
+function checkTraverseTwo(o: any, x: number) {
+  if (typeof o == 'object') {
+    for (var key in o) {
+      i = i + 1;
+      if (i == x - 1) {
+        console.log(chalk.blue('Found Object'), chalk.yellow(i), o);
+      }
+      checkTraverseTwo(o[key], x);
     }
   }
 }
 
-function getObject() {
-  getObjectsOnPage(file);
-
-  objectsOnPage.map((x) => {
-    console.log('Object:', JSON.stringify(x));
-    getTraverseObjectIteration(file, x[0]); //x[1].iteration);
-  });
-}
-
-getObject();
-console.log(iterations);
-iterations.map((x) => {
-  traverseObjectIteration(file, x);
+iterationsTwo.map((x) => {
+  i = 0;
+  checkTraverseTwo(file, x[0]);
 });
-
-//traverseObjectIteration(file, 66); //x);
