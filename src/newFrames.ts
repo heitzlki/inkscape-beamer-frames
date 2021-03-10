@@ -83,7 +83,7 @@ function checkTraverseTwo(o: any, x: number) {
   if (typeof o == 'object') {
     for (var key in o) {
       i = i + 1;
-      if (i == x - 1) {
+      if (i == x) {
         console.log(chalk.blue('Found Object'), chalk.yellow(i), o);
       }
       checkTraverseTwo(o[key], x);
