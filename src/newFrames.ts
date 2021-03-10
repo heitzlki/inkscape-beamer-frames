@@ -1,6 +1,6 @@
 import File from './File';
 //import * as xml2json from 'xml2json';
-import * as traverse from 'traverse';
+//import * as traverse from 'traverse';
 import chalk = require('chalk');
 let fileParser = new File('file');
 let file: any = fileParser.getFile();
@@ -32,7 +32,7 @@ function getObjectsOnPage(o: any) {
 }
 
 getObjectsOnPage(file);
-
+/*
 let iterationsOne: any[] = [];
 objectsOnPage.map((x) => {
   let i: number = 0;
@@ -54,6 +54,7 @@ iterationsOne.map((x) => {
     }
   });
 });
+*/
 ///////////////////////////////////////////////////////////////////////////////////
 
 let iterationsTwo: any[] = [];
@@ -83,8 +84,23 @@ function checkTraverseTwo(o: any, x: number) {
   if (typeof o == 'object') {
     for (var key in o) {
       i = i + 1;
-      if (i == x) {
-        console.log(chalk.blue('Found Object'), chalk.yellow(i), o);
+      if (i == x - 1) {
+        console.log(chalk.blue('Type of:'), Object.prototype.toString.call(o));
+        if (Object.prototype.toString.call(o) == '[object Object]') {
+          let objectHasBeenPrinted: any = false;
+          iterationsTwo.map((x) => {
+            if (o != x[0]) {
+              objectHasBeenPrinted = true;
+            }
+          });
+          if (objectHasBeenPrinted == true) {
+            console.log(chalk.blue('Found Object'), chalk.yellow(i), o);
+          }
+          objectHasBeenPrinted = false;
+        } else {
+          i = 0;
+          checkTraverseTwo(file, x - 1);
+        }
       }
       checkTraverseTwo(o[key], x);
     }
@@ -93,5 +109,7 @@ function checkTraverseTwo(o: any, x: number) {
 
 iterationsTwo.map((x) => {
   i = 0;
+  console.log(chalk.redBright(x));
   checkTraverseTwo(file, x[0]);
+  i = 0;
 });
