@@ -1,5 +1,5 @@
 import File from './File';
-//import * as xml2json from 'xml2json';
+import * as xml2json from 'xml2json';
 //import * as traverse from 'traverse';
 import chalk = require('chalk');
 let fileParser = new File('file');
@@ -80,23 +80,40 @@ objectsOnPage.map((x) => {
 
 console.log(iterationsTwo);
 
+let objectsWithKey: any[] = [];
+
 function checkTraverseTwo(o: any, x: number) {
   if (typeof o == 'object') {
     for (var key in o) {
       i = i + 1;
       if (i == x - 1) {
-        console.log(chalk.blue('Type of:'), Object.prototype.toString.call(o));
         if (Object.prototype.toString.call(o) == '[object Object]') {
-          let objectHasBeenPrinted: any = false;
-          iterationsTwo.map((x) => {
-            if (o != x[0]) {
-              objectHasBeenPrinted = true;
+          let objNotInList: any = false;
+
+          objectsOnPage.map((y) => {
+            if (o == y[0]) {
+              i = 0;
+              objNotInList = false;
+              checkTraverseTwo(file, x - 1);
+            } else {
+              objNotInList = true;
             }
           });
-          if (objectHasBeenPrinted == true) {
-            console.log(chalk.blue('Found Object'), chalk.yellow(i), o);
+
+          if (objNotInList == true) {
+            let iBelowZ: any = false; // prevents issue iteration from becoming larger than possible
+            iterationsTwo.map((z) => {
+              if (i < z) {
+                iBelowZ = true;
+              }
+            });
+            if (iBelowZ == true) {
+              console.log(chalk.blue('Found Object'), chalk.yellow(i), o);
+              objectsWithKey.push([{ g: o }]);
+            }
+            iBelowZ = false;
           }
-          objectHasBeenPrinted = false;
+          objNotInList = false;
         } else {
           i = 0;
           checkTraverseTwo(file, x - 1);
@@ -112,4 +129,11 @@ iterationsTwo.map((x) => {
   console.log(chalk.redBright(x));
   checkTraverseTwo(file, x[0]);
   i = 0;
+});
+
+console.log(objectsWithKey);
+
+objectsWithKey.map((x) => {
+  //console.log(chalk.green(JSON.stringify(x[0])));
+  console.log(xml2json.toXml(x[0]));
 });
