@@ -1,93 +1,139 @@
 import File from './File';
-
+import * as xml2json from 'xml2json';
+//import * as traverse from 'traverse';
+import chalk = require('chalk');
 let fileParser = new File('file');
 let file: any = fileParser.getFile();
 
 let fileWidth = Number((file.svg.width / 3.779527559055).toFixed(5));
 let fileHeight = Number((file.svg.height / 3.779527559055).toFixed(5));
 
-class Objects {
-  object: any;
-
-  constructor(object: any) {
-    this.object = object;
-  }
-
-  matchedObjects: any[] = [];
-  objectsOnPage(o: any) {
-    var type = typeof o;
-    if (type == 'object') {
-      for (var key in o) {
-        if (key == 'x') {
-          //|| key == 'y') {
-
-          if (
-            o.x >= 0 &&
-            o.width <= fileWidth &&
-            o.y >= 0 &&
-            o.height <= fileHeight
-          ) {
-            this.matchedObjects.push([o]);
-          }
-          this.objectsOnPage(o[key]);
-        } else {
-          this.objectsOnPage(o[key]);
+let objectsOnPage: any[] = [];
+function getObjectsOnPage(o: any) {
+  var type = typeof o;
+  if (type == 'object') {
+    for (var key in o) {
+      if (key == 'x') {
+        //|| key == 'y') {
+        if (
+          o.x >= 0 &&
+          o.width <= fileWidth &&
+          o.y >= 0 &&
+          o.height <= fileHeight
+        ) {
+          objectsOnPage.push([o]);
         }
+        getObjectsOnPage(o[key]);
+      } else {
+        getObjectsOnPage(o[key]);
       }
     }
   }
-
-  getObjects() {
-    this.objectsOnPage(this.object);
-    return this.matchedObjects;
-  }
 }
 
-let objects = new Objects(file);
-let groupes: any = objects.getObjects();
+getObjectsOnPage(file);
+/*
+let iterationsOne: any[] = [];
+objectsOnPage.map((x) => {
+  let i: number = 0;
+  traverse(file).forEach((o) => {
+    i = i + 1;
+    if (o == x[0]) {
+      iterationsOne.push([i]);
+    }
+  });
+});
+console.log(iterationsOne);
 
-let i: number = 0;
-function getKKKeyByyyVal(iter: number, o: any) {
-  var type = typeof o;
-  if (type == 'object') {
+iterationsOne.map((x) => {
+  let i: number = 0;
+  traverse(file).forEach((o) => {
+    i = i + 1;
+    if (i == x[0]) {
+      console.log(chalk.blue('Found Object'), chalk.yellow(i), o);
+    }
+  });
+});
+*/
+///////////////////////////////////////////////////////////////////////////////////
+
+let iterationsTwo: any[] = [];
+let i = 0;
+function traverseTwo(o: any, x: any) {
+  if (typeof o == 'object') {
     for (var key in o) {
       i = i + 1;
-      if (i == iter - 1) {
-        if (Object.prototype.toString.call(o) == '[object Array]') {
-          i = 0;
-          getKKKeyByyyVal(iter - 1, file);
-        } else {
-          console.log(o);
+      if (o == x) {
+        if (i != 1) {
+          iterationsTwo.push([i]);
         }
+        i = 0;
       }
-      getKKKeyByyyVal(iter, o[key]);
+      traverseTwo(o[key], x);
     }
   }
 }
+objectsOnPage.map((x) => {
+  traverseTwo(file, x[0]);
+  i = 0;
+});
 
-let iteration = 0;
-let finIteration = 0;
-function getMatchingObjectIteration(o: any, matchingObject: any) {
-  var type = typeof o;
-  if (type == 'object') {
+console.log(iterationsTwo);
+
+let objectsWithKey: any[] = [];
+
+function checkTraverseTwo(o: any, x: number) {
+  if (typeof o == 'object') {
     for (var key in o) {
-      iteration = iteration + 1;
-      if (o == matchingObject) {
-        if (finIteration == 0) {
-          finIteration = iteration;
-          getKKKeyByyyVal(finIteration, file);
-          iteration = 0;
-          finIteration = 0;
+      i = i + 1;
+      if (i == x - 1) {
+        if (Object.prototype.toString.call(o) == '[object Object]') {
+          let objNotInList: any = false;
+
+          objectsOnPage.map((y) => {
+            if (o == y[0]) {
+              i = 0;
+              objNotInList = false;
+              checkTraverseTwo(file, x - 1);
+            } else {
+              objNotInList = true;
+            }
+          });
+
+          if (objNotInList == true) {
+            let iBelowZ: any = false; // prevents issue iteration from becoming larger than possible
+            iterationsTwo.map((z) => {
+              if (i < z) {
+                iBelowZ = true;
+              }
+            });
+            if (iBelowZ == true) {
+              console.log(chalk.blue('Found Object'), chalk.yellow(i), o);
+              objectsWithKey.push([{ g: o }]);
+            }
+            iBelowZ = false;
+          }
+          objNotInList = false;
+        } else {
           i = 0;
-          console.log(iteration, finIteration, i);
+          checkTraverseTwo(file, x - 1);
         }
       }
-      getMatchingObjectIteration(o[key], matchingObject);
+      checkTraverseTwo(o[key], x);
     }
   }
 }
 
-groupes.map((x: any) => {
-  console.log('Object:', JSON.stringify(x[0]));
-  getMatchingObjectIteration(file, groupes[2][0]);
+iterationsTwo.map((x) => {
+  i = 0;
+  console.log(chalk.redBright(x));
+  checkTraverseTwo(file, x[0]);
+  i = 0;
+});
+
+console.log(objectsWithKey);
+
+objectsWithKey.map((x) => {
+  //console.log(chalk.green(JSON.stringify(x[0])));
+  console.log(xml2json.toXml(x[0]));
 });
